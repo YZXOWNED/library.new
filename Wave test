@@ -1,144 +1,107 @@
--- Create a ScreenGui
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+-- Add Button 1 (runs script from external URL)
+local button1 = Instance.new("TextButton")
+button1.Text = "Button1"
+button1.Size = UDim2.new(0, 120, 0, 40)
+button1.Position = UDim2.new(0, 10, 0, 150)
+button1.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+button1.TextColor3 = Color3.fromRGB(255, 255, 255)
+button1.Parent = mainFrame
 
--- Create a Frame (container for other elements)
-local mainFrame = Instance.new("Frame")
-mainFrame.Size = UDim2.new(0, 500, 0, 500)
-mainFrame.Position = UDim2.new(0.5, -250, 0.5, -250)
-mainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-mainFrame.Active = true
-mainFrame.Draggable = true -- Makes the GUI draggable
-mainFrame.Parent = screenGui
+local scriptUrl1 = "https://pastefy.app/Oj7bfe2F/raw"
 
--- Add a title label
-local titleLabel = Instance.new("TextLabel")
-titleLabel.Text = "Test Gui"
-titleLabel.Size = UDim2.new(1, 0, 0, 30)
-titleLabel.BackgroundTransparency = 1
-titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-titleLabel.Font = Enum.Font.SourceSans
-titleLabel.TextSize = 20
-titleLabel.Parent = mainFrame
-
--- Add a Toggle (Checkbox)
-local toggleButton = Instance.new("TextButton")
-toggleButton.Text = "Aimbot (Beta) [OFF]"
-toggleButton.Size = UDim2.new(0, 195, 0, 40)
-toggleButton.Position = UDim2.new(0, 10, 0, 50)
-toggleButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-toggleButton.Parent = mainFrame
-
-local toggleState = false
-
-toggleButton.MouseButton1Click:Connect(function()
-    toggleState = not toggleState
-    toggleButton.Text = toggleState and "Aimbot (Beta) [ON]" or "Aimbot (Beta) [OFF]"
-end)
-
--- Add a Slider (using a Frame as a handle)
-local sliderLabel = Instance.new("TextLabel")
-sliderLabel.Text = "Slider: 0"
-sliderLabel.Size = UDim2.new(0, 120, 0, 30)
-sliderLabel.Position = UDim2.new(0, 10, 0, 100)
-sliderLabel.BackgroundTransparency = 1
-sliderLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-sliderLabel.Font = Enum.Font.SourceSans
-sliderLabel.TextSize = 16
-sliderLabel.Parent = mainFrame
-
-local sliderFrame = Instance.new("Frame")
-sliderFrame.Size = UDim2.new(0, 120, 0, 10)
-sliderFrame.Position = UDim2.new(0, 140, 0, 115)
-sliderFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-sliderFrame.Parent = mainFrame
-
-local sliderHandle = Instance.new("Frame")
-sliderHandle.Size = UDim2.new(0, 10, 1, 0)
-sliderHandle.Position = UDim2.new(0, 0, 0, 0)
-sliderHandle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-sliderHandle.Parent = sliderFrame
-
-local sliderValue = 0
-local dragging = false
-
--- Function to update slider
-local function updateSlider(input)
-    local xScale = math.clamp((input.Position.X - sliderFrame.AbsolutePosition.X) / sliderFrame.AbsoluteSize.X, 0, 1)
-    sliderHandle.Position = UDim2.new(xScale, 0, 0, 0)
-    sliderValue = math.floor(xScale * 100)
-    sliderLabel.Text = "Slider: " .. tostring(sliderValue)
-end
-
-sliderHandle.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        dragging = true
-    end
-end)
-
-sliderHandle.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        dragging = false
-    end
-end)
-
-sliderFrame.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        updateSlider(input)
-        dragging = true
-    end
-end)
-
-sliderFrame.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        dragging = false
-    end
-end)
-
-game:GetService("UserInputService").InputChanged:Connect(function(input)
-    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-        updateSlider(input)
-    end
-end)
-
--- Add a Button (runs script from external URL)
-local button = Instance.new("TextButton")
-button.Text = "Button1"
-button.Size = UDim2.new(0, 120, 0, 40)
-button.Position = UDim2.new(0, 10, 0, 150)
-button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-button.TextColor3 = Color3.fromRGB(255, 255, 255)
-button.Parent = mainFrame
-
-local scriptUrl = "https://pastefy.app/Oj7bfe2F/raw"
-
-button.MouseButton1Click:Connect(function()
-    local scriptContent = game:HttpGet(scriptUrl)
+button1.MouseButton1Click:Connect(function()
+    local scriptContent = game:HttpGet(scriptUrl1)
     local success, err = pcall(function()
         loadstring(scriptContent)()
     end)
-
 end)
 
--- Add a Color Picker (changes entire mainFrame's color)
-local colorButton = Instance.new("TextButton")
-colorButton.Text = "Change Color"
-colorButton.Size = UDim2.new(0, 120, 0, 40)
-colorButton.Position = UDim2.new(0, 10, 0, 200) -- Moved below Button1
-colorButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-colorButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-colorButton.Parent = mainFrame
+-- Add Button 2
+local button2 = Instance.new("TextButton")
+button2.Text = "Button2"
+button2.Size = UDim2.new(0, 120, 0, 40)
+button2.Position = UDim2.new(0, 10, 0, 200)
+button2.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+button2.TextColor3 = Color3.fromRGB(255, 255, 255)
+button2.Parent = mainFrame
 
-colorButton.MouseButton1Click:Connect(function()
-    local randomColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
-    mainFrame.BackgroundColor3 = randomColor
+local scriptUrl2 = "https://pastefy.app/Oj7bfe2F/raw" -- Replace with desired script URL
+
+button2.MouseButton1Click:Connect(function()
+    local scriptContent = game:HttpGet(scriptUrl2)
+    local success, err = pcall(function()
+        loadstring(scriptContent)()
+    end)
 end)
 
--- Toggle visibility with 'P' key
-local userInputService = game:GetService("UserInputService")
-userInputService.InputBegan:Connect(function(input)
-    if input.KeyCode == Enum.KeyCode.P then
-        mainFrame.Visible = not mainFrame.Visible
-    end
+-- Add Button 3
+local button3 = Instance.new("TextButton")
+button3.Text = "Button3"
+button3.Size = UDim2.new(0, 120, 0, 40)
+button3.Position = UDim2.new(0, 10, 0, 250)
+button3.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+button3.TextColor3 = Color3.fromRGB(255, 255, 255)
+button3.Parent = mainFrame
+
+local scriptUrl3 = "https://pastefy.app/Oj7bfe2F/raw" -- Replace with desired script URL
+
+button3.MouseButton1Click:Connect(function()
+    local scriptContent = game:HttpGet(scriptUrl3)
+    local success, err = pcall(function()
+        loadstring(scriptContent)()
+    end)
+end)
+
+-- Add Button 4
+local button4 = Instance.new("TextButton")
+button4.Text = "Button4"
+button4.Size = UDim2.new(0, 120, 0, 40)
+button4.Position = UDim2.new(0, 10, 0, 300)
+button4.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+button4.TextColor3 = Color3.fromRGB(255, 255, 255)
+button4.Parent = mainFrame
+
+local scriptUrl4 = "https://pastefy.app/Oj7bfe2F/raw" -- Replace with desired script URL
+
+button4.MouseButton1Click:Connect(function()
+    local scriptContent = game:HttpGet(scriptUrl4)
+    local success, err = pcall(function()
+        loadstring(scriptContent)()
+    end)
+end)
+
+-- Add Button 5
+local button5 = Instance.new("TextButton")
+button5.Text = "Button5"
+button5.Size = UDim2.new(0, 120, 0, 40)
+button5.Position = UDim2.new(0, 10, 0, 350)
+button5.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+button5.TextColor3 = Color3.fromRGB(255, 255, 255)
+button5.Parent = mainFrame
+
+local scriptUrl5 = "https://pastefy.app/Oj7bfe2F/raw" -- Replace with desired script URL
+
+button5.MouseButton1Click:Connect(function()
+    local scriptContent = game:HttpGet(scriptUrl5)
+    local success, err = pcall(function()
+        loadstring(scriptContent)()
+    end)
+end)
+
+-- Add Button 6
+local button6 = Instance.new("TextButton")
+button6.Text = "Button6"
+button6.Size = UDim2.new(0, 120, 0, 40)
+button6.Position = UDim2.new(0, 10, 0, 400)
+button6.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+button6.TextColor3 = Color3.fromRGB(255, 255, 255)
+button6.Parent = mainFrame
+
+local scriptUrl6 = "https://pastefy.app/Oj7bfe2F/raw" -- Replace with desired script URL
+
+button6.MouseButton1Click:Connect(function()
+    local scriptContent = game:HttpGet(scriptUrl6)
+    local success, err = pcall(function()
+        loadstring(scriptContent)()
+    end)
 end)
