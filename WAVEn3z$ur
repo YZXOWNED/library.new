@@ -1,1 +1,56 @@
+local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
+local WhitelistedHWIDs = {"21B24C27-258E-40E0-B998-DEF0252D7D76", "541F1F61-AB6C-408E-9D85-C98736EADBE2","E5CB0A22-807B-4108-9D75-57267C4F5F69","","",""} -- Add your whitelisted HWIDs here
 
+function CheckHWID(hwidval)
+    for _, whitelisted in pairs(WhitelistedHWIDs) do
+        if hwidval == whitelisted then
+            return true
+        end
+    end
+    return false
+end
+
+local isWhitelisted = CheckHWID(HWID)
+
+-- Map each game's PlaceId to the corresponding library URL
+local gameLibraries = {
+    [301549746] = "",--counter blox
+    [4483381587] = "",--baseplate for testing
+    [286090429] = "",--arsenal
+    [1869597719] = "",--counter blox deathmatch
+
+}
+local function loadLibraryForGame()
+    local currentPlaceId = game.PlaceId
+    local libraryUrl = gameLibraries[currentPlaceId]
+    
+    if libraryUrl then
+        local success, library = pcall(function()
+            return loadstring(game:HttpGet(libraryUrl))()
+        end)
+
+        if success then
+            print("Hwid In Whitelisted Script Loaded")
+        else
+            warn("Failed to load the Script (Execute The script Again) " .. currentPlaceId)
+        end
+    else
+        warn("Failed to load the Script (No script or not added game ID)")
+    end
+end
+
+if isWhitelisted then
+    loadLibraryForGame()
+print(" Script Loaded")
+else
+local player = game.Players.LocalPlayer
+
+-- Function to kick yourself
+local function kickYourself()
+    -- Kick the player with a message
+    player:Kick("Your Hwid Is not Whitelisted")
+end
+
+-- Call the function to kick yourself
+kickYourself()
+end
