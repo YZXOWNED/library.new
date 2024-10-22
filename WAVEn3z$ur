@@ -1,3 +1,4 @@
+
 local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
 local WhitelistedHWIDs = {"21B24C27-258E-40E0-B998-DEF0252D7D76", "541F1F61-AB6C-408E-9D85-C98736EADBE2","E5CB0A22-807B-4108-9D75-57267C4F5F69","","",""} -- Add your whitelisted HWIDs here
 
@@ -14,10 +15,11 @@ local isWhitelisted = CheckHWID(HWID)
 
 -- Map each game's PlaceId to the corresponding library URL
 local gameLibraries = {
-    [301549746] = "https://raw.githubusercontent.com/YZXOWNED/erm/refs/heads/main/Wave%20test",--counter blox
-    [4483381587] = "https://raw.githubusercontent.com/YZXOWNED/erm/refs/heads/main/Wave%20test",--baseplate for testing
-    [13253735473] = "https://raw.githubusercontent.com/YZXOWNED/erm/refs/heads/main/Wave%20test",--arsenal
+    [301549746] = "",--counter blox
+    [4483381587] = "",--baseplate for testing
+    [286090429] = "",--arsenal
     [1869597719] = "",--counter blox deathmatch
+    [13253735473] = " [13253735473] = "https://raw.githubusercontent.com/YZXOWNED/erm/refs/heads/main/Wave%20test",--arsenal",--arsenal
 
 }
 local function loadLibraryForGame()
