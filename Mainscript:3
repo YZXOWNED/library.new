@@ -18,7 +18,7 @@ local gameLibraries = {
     [4483381587] = "https://raw.githubusercontent.com/YZXOWNED/erm/refs/heads/main/counterblox%20v1.3",--baseplate for testing
     [286090429] = "https://raw.githubusercontent.com/YZXOWNED/bestarsenalscriptfuckthaskidders/refs/heads/main/imcooked",--arsenal
     [1869597719] = "https://raw.githubusercontent.com/YZXOWNED/erm/refs/heads/main/counterblox%20v1.3",--counter blox deathmatch
-    [286090429] = "https://raw.githubusercontent.com/YZXOWNED/erm/refs/heads/main/Wave%20test",--arsenal
+    [286090429] = "https://raw.githubusercontent.com/YZXOWNED/bestarsenalscriptfuckthaskidders/refs/heads/main/v3.1",--arsenal
 }
 local function loadLibraryForGame()
     local currentPlaceId = game.PlaceId
