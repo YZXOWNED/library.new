@@ -1,24 +1,24 @@
 local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
-local WhitelistedHWIDs = {"21B24C27-258E-40E0-B998-DEF0252D7D76", "541F1F61-AB6C-408E-9D85-C98736EADBE2","E5CB0A22-807B-4108-9D75-57267C4F5F69","","",""} -- Add your whitelisted HWIDs here
+local WhitelistedHWIDs = { -- Convert the HWIDs to a dictionary (set) format for faster lookup
+    ["41D9CEC1-2927-43F1-94FA-E90F7040AF6F"] = true,
+    
+    
+    
+}
 
-function CheckHWID(hwidval)
-    for _, whitelisted in pairs(WhitelistedHWIDs) do
-        if hwidval == whitelisted then
-            return true
-        end
-    end
-    return false
+local function CheckHWID(hwid)
+    return WhitelistedHWIDs[hwid] or false
 end
 
 local isWhitelisted = CheckHWID(HWID)
 
 -- Map each game's PlaceId to the corresponding library URL
 local gameLibraries = {
-    [301549746] = "https://raw.githubusercontent.com/YZXOWNED/erm/refs/heads/main/counterblox%20v1.3",--counter blox
+    [301549746] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox",--counter blox
     [4483381587] = "https://raw.githubusercontent.com/YZXOWNED/erm/refs/heads/main/counterblox%20v1.3",--baseplate for testing
     [286090429] = "https://raw.githubusercontent.com/YZXOWNED/bestarsenalscriptfuckthaskidders/refs/heads/main/imcooked",--arsenal
-    [1869597719] = "https://raw.githubusercontent.com/YZXOWNED/erm/refs/heads/main/counterblox%20v1.3",--counter blox deathmatch
-    [286090429] = "https://raw.githubusercontent.com/YZXOWNED/bestarsenalscriptfuckthaskidders/refs/heads/main/v3.1",--arsenal
+    [1869597719] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox",--counter blox deathmatch
+    
 }
 local function loadLibraryForGame()
     local currentPlaceId = game.PlaceId
