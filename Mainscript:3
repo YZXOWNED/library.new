@@ -1,6 +1,7 @@
 local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
 local WhitelistedHWIDs = { -- Convert the HWIDs to a dictionary (set) format for faster lookup
     ["41D9CEC1-2927-43F1-94FA-E90F7040AF6F"] = true,
+    ["7C2E35CA-1331-4E9A-B703-B16CD980774E"] = true,
     
     
     
