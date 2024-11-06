@@ -7,7 +7,7 @@ local WhitelistedHWIDs = { -- Convert the HWIDs to a dictionary (set) format for
     ["E7C4E451-9524-4FE0-A263-78C2A04BD4BA"] = true,
     ["A7B88461-4243-471B-8A3A-22D525C49D4B"] = true,
     ["1166B576-94B1-4AA1-8E12-897B9F22E20D"] = true,
-    
+    ["9F5C3F84-4272-42DD-B004-BAE7C27FEC9E"] = true,  
 }
 
 local function CheckHWID(hwid)
