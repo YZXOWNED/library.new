@@ -1,12 +1,8 @@
 -- Define Whitelisted HWIDs
 local WhitelistedHWIDs = {
     ["41D9CEC1-2927-43F1-94FA-E90F7040AF6F"] = true,
-    ["7C2E35CA-1331-4E9A-B703-B16CD980774E"] = true,
-    ["46CA64B2-6DE6-4094-82F1-0E5A6A295D2F"] = true,
-    ["A618E2AD-3A39-4936-A39A-6DC3DB467937"] = true,
     ["E7C4E451-9524-4FE0-A263-78C2A04BD4BA"] = true,
-    ["A7B88461-4243-471B-8A3A-22D525C49D4B"] = true,
-    ["1166B576-94B1-4AA1-8E12-897B9F22E20D"] = true,
+    
 }
 
 -- Get current HWID
@@ -15,7 +11,7 @@ local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
 -- Main Execution Block
 if WhitelistedHWIDs[HWID] then
     local success, err = pcall(function()
-        loadstring(game:HttpGet("https://your-url-here.com/script.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/Paidcooked"))()
     end)
     if success then
         print("Script loaded successfully")
