@@ -19,7 +19,7 @@ local isWhitelisted = CheckHWID(HWID)
 -- Map each game's PlaceId to the corresponding library URL
 local gameLibraries = {
     [301549746] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox",--counter blox
-    [4483381587] = "https://raw.githubusercontent.com/YZXOWNED/erm/refs/heads/main/counterblox%20v1.3",--baseplate for testing
+    [4483381587] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox",--baseplate for testing
     [286090429] = "https://raw.githubusercontent.com/YZXOWNED/bestarsenalscriptfuckthaskidders/refs/heads/main/v3.1",--arsenal
     [1869597719] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox",--counter blox deathmatch
     [13253735473] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/Wave%20test",
