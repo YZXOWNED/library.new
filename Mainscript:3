@@ -1,5 +1,7 @@
 local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
-local WhitelistedHWIDs = { -- Convert the HWIDs to a dictionary (set) format for faster lookup
+
+-- List of Whitelisted HWIDs
+local WhitelistedHWIDs = {
     ["41D9CEC1-2927-43F1-94FA-E90F7040AF6F"] = true,
     ["7C2E35CA-1331-4E9A-B703-B16CD980774E"] = true,
     ["46CA64B2-6DE6-4094-82F1-0E5A6A295D2F"] = true,
@@ -10,20 +12,28 @@ local WhitelistedHWIDs = { -- Convert the HWIDs to a dictionary (set) format for
     ["9F5C3F84-4272-42DD-B004-BAE7C27FEC9E"] = true,  
 }
 
+-- Games that bypass the HWID whitelist
+local gamesWithoutWhitelist = {
+    [9874911474] = true, -- Tha Bronx 2 
+    [4483381587] = true, -- Baseplate for testing
+}
+
+-- Map each game's PlaceId to the corresponding library URL
+local gameLibraries = {
+    [301549746] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox", -- Counter Blox
+    [4483381587] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox", -- Baseplate for testing
+    [286090429] = "https://raw.githubusercontent.com/YZXOWNED/bestarsenalscriptfuckthaskidders/refs/heads/main/v3.1", -- Arsenal
+    [1869597719] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox", -- Counter Blox Deathmatch
+    [13253735473] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/Wave%20test", -- Wave Test
+    [9874911474] = 
+}
+
+-- Function to check if HWID is whitelisted
 local function CheckHWID(hwid)
     return WhitelistedHWIDs[hwid] or false
 end
 
-local isWhitelisted = CheckHWID(HWID)
-
--- Map each game's PlaceId to the corresponding library URL
-local gameLibraries = {
-    [301549746] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox",--counter blox
-    [4483381587] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox",--baseplate for testing
-    [286090429] = "https://raw.githubusercontent.com/YZXOWNED/bestarsenalscriptfuckthaskidders/refs/heads/main/v3.1",--arsenal
-    [1869597719] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox",--counter blox deathmatch
-    [13253735473] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/Wave%20test",
-}
+-- Function to load the script for the game
 local function loadLibraryForGame()
     local currentPlaceId = game.PlaceId
     local libraryUrl = gameLibraries[currentPlaceId]
@@ -34,28 +44,32 @@ local function loadLibraryForGame()
         end)
 
         if success then
-            print("Hwid In Whitelisted Script Loaded")
+            print("Script Loaded")
         else
-            warn("Failed to load the Script (Execute The script Again) " .. currentPlaceId)
+            warn("Failed to load the Script (Execute the script again) " .. currentPlaceId)
         end
     else
         warn("Failed to load the Script (No script or not added game ID)")
     end
 end
 
+-- Determine if whitelist is required for the current game
+local currentPlaceId = game.PlaceId
+local isWhitelisted = gamesWithoutWhitelist[currentPlaceId] or CheckHWID(HWID)
+
+-- Execute script based on whitelist status
 if isWhitelisted then
     loadLibraryForGame()
-print(" Script Loaded")
+    print("Script Loaded")
 else
-local player = game.Players.LocalPlayer
+    local player = game.Players.LocalPlayer
 
--- Function to kick yourself
-local function kickYourself()
-    -- Kick the player with a message
-    player:Kick("Your Hwid Is not Whitelisted")
+    -- Function to kick the player
+    local function kickYourself()
+        -- Kick the player with a message
+        player:Kick("Your HWID is not Whitelisted")
+    end
+
+    -- Call the function to kick yourself
+    kickYourself()
 end
-
--- Call the function to kick yourself
-kickYourself()
-end
-
