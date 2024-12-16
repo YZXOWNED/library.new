@@ -14,7 +14,7 @@ local WhitelistedHWIDs = {
 
 -- Games that bypass the HWID whitelist
 local gamesWithoutWhitelist = {
-    [9874911474] = true, -- Tha Bronx 2 
+    [301549746] = true, -- Counter Blox
     [4483381587] = true, -- Baseplate for testing
 }
 
@@ -25,7 +25,6 @@ local gameLibraries = {
     [286090429] = "https://raw.githubusercontent.com/YZXOWNED/bestarsenalscriptfuckthaskidders/refs/heads/main/v3.1", -- Arsenal
     [1869597719] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox", -- Counter Blox Deathmatch
     [13253735473] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/Wave%20test", -- Wave Test
-    [9874911474] = 
 }
 
 -- Function to check if HWID is whitelisted
