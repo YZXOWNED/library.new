@@ -10,6 +10,7 @@ local WhitelistedHWIDs = {
     ["A7B88461-4243-471B-8A3A-22D525C49D4B"] = true,
     ["1166B576-94B1-4AA1-8E12-897B9F22E20D"] = true,
     ["9F5C3F84-4272-42DD-B004-BAE7C27FEC9E"] = true,  
+    ["20423517-9a34-49a1-8aac-ebf095e4976d"] = true,
 }
 
 -- Games that bypass the HWID whitelist
