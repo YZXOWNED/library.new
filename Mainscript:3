@@ -1,3 +1,4 @@
+-- Configuration
 local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
 
 -- List of Whitelisted HWIDs
@@ -19,14 +20,20 @@ local gamesWithoutWhitelist = {
     [4483381587] = true, -- Baseplate for testing
 }
 
--- Map each game's PlaceId to the corresponding library URL
-local gameLibraries = {
-    [301549746] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox", -- Counter Blox
-    [4483381587] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox", -- Baseplate for testing
-    [286090429] = "https://raw.githubusercontent.com/YZXOWNED/bestarsenalscriptfuckthaskidders/refs/heads/main/v3.1", -- Arsenal
-    [1869597719] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox", -- Counter Blox Deathmatch
-    [13253735473] = "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/Wave%20test", -- Wave Test
-}
+-- Game libraries map
+local gameLibraries = {}
+
+-- Function to easily add new games and libraries
+local function addGameLibrary(placeId, libraryUrl)
+    gameLibraries[placeId] = libraryUrl
+end
+
+-- Add new games and libraries here:
+addGameLibrary(301549746, "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox") -- Counter Blox
+addGameLibrary(4483381587, "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox") -- Baseplate for testing
+addGameLibrary(286090429, "https://raw.githubusercontent.com/YZXOWNED/bestarsenalscriptfuckthaskidders/refs/heads/main/v3.1") -- Arsenal
+addGameLibrary(1869597719, "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/fixedcounterblox") -- Counter Blox Deathmatch
+addGameLibrary(13253735473, "https://raw.githubusercontent.com/YZXOWNED/library.new/refs/heads/main/Wave%20test") -- Wave Test
 
 -- Function to check if HWID is whitelisted
 local function CheckHWID(hwid)
