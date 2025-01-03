@@ -1,1 +1,90 @@
+-- Configuration
+local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
 
+-- List of Whitelisted HWIDs
+local WhitelistedHWIDs = { 
+["04bbcb7b-573c-4dd0-8459-3f74399d1bd2"] = true,
+}
+
+-- List of Blacklisted HWIDs
+local BlacklistedHWIDs = {
+    ["BLOCKED-HWID-EXAMPLE1"] = true,
+    ["BLOCKED-HWID-EXAMPLE2"] = true,
+}
+
+-- Games that bypass the HWID whitelist
+local gamesWithoutWhitelist = {
+    
+    
+}
+
+-- Game libraries map
+local gameLibraries = {}
+
+-- Function to easily add new games and libraries
+local function addGameLibrary(placeId, libraryUrl)
+    gameLibraries[placeId] = libraryUrl
+end
+
+-- Add new games and libraries here:
+addGameLibrary(301549746, "https://github.com/YZXOWNED/library.new/blob/main/Paidthabronx2") --tha bronx 2 paid 
+
+-- Function to check if HWID is whitelisted
+local function CheckHWID(hwid)
+    return WhitelistedHWIDs[hwid] or false
+end
+
+-- Function to check if HWID is blacklisted
+local function IsBlacklisted(hwid)
+    return BlacklistedHWIDs[hwid] or false
+end
+
+-- Function to load the script for the game
+local function loadLibraryForGame()
+    local currentPlaceId = game.PlaceId
+    local libraryUrl = gameLibraries[currentPlaceId]
+    
+    if libraryUrl then
+        local success, library = pcall(function()
+            return loadstring(game:HttpGet(libraryUrl))()
+        end)
+
+        if success then
+            print("Script Loaded")
+        else
+            warn("Failed to load the Script (Execute the script again) " .. currentPlaceId)
+        end
+    else
+        warn("Failed to load the Script (No script or not added game ID)")
+    end
+end
+
+-- Determine if whitelist is required for the current game
+local currentPlaceId = game.PlaceId
+
+-- Check if the HWID is blacklisted
+if IsBlacklisted(HWID) then
+    local player = game.Players.LocalPlayer
+    player:Kick("Your HWID is Blacklisted")
+    return
+end
+
+-- Check if the HWID is whitelisted or the game bypasses the whitelist
+local isWhitelisted = gamesWithoutWhitelist[currentPlaceId] or CheckHWID(HWID)
+
+-- Execute script based on whitelist status
+if isWhitelisted then
+    loadLibraryForGame()
+    print("Script Loaded")
+else
+    local player = game.Players.LocalPlayer
+
+    -- Function to kick the player
+    local function kickYourself()
+        -- Kick the player with a message
+        player:Kick("Your HWID is not Whitelisted")
+    end
+
+    -- Call the function to kick yourself
+    kickYourself()
+end
